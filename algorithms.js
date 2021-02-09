@@ -229,6 +229,17 @@ const isHexagonNumber = (num) => {
   return n;
 };
 
+const GCD = (a, b) => {
+  // from geeksforgeeks
+  if (b == 0) return a;
+  return GCD(b, a % b);
+};
+
+const LCM = (a, b) => {
+  // from geeksforgeeks
+  return (a / GCD(a, b)) * b;
+};
+
 let start = Date.now();
 // --------------------------------
 
