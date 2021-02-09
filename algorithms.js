@@ -214,6 +214,21 @@ const isPentagonNumber = (num) => {
   return n;
 };
 
+const hexagonNumber = (number) => {
+  return number * (2 * number - 1);
+};
+
+const isHexagonNumber = (num) => {
+  // made from the quadratic formula
+  // return false if it's not a pentagon number,
+  // if it is, returns which number it was made from
+  let part = Math.sqrt(8 * num + 1);
+  if (parseInt(part) !== part) return false;
+  let n = (1 + part) / 4;
+  if (parseInt(n) !== n) return false;
+  return n;
+};
+
 let start = Date.now();
 // --------------------------------
 
