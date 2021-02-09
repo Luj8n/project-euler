@@ -7,11 +7,11 @@ const addTwoNumbers = (str1, str2) => {
 
   bigger = bigger
     .split("")
-    .map((char) => parseInt(char))
+    .map((char) => 1 * char)
     .reverse();
   smaller = smaller
     .split("")
-    .map((char) => parseInt(char))
+    .map((char) => 1 * char)
     .reverse();
 
   let carry = 0;
@@ -49,11 +49,11 @@ const multTwoNumbers = (str1, str2) => {
 
   bigger = bigger
     .split("")
-    .map((char) => parseInt(char))
+    .map((char) => 1 * char)
     .reverse();
   smaller = smaller
     .split("")
-    .map((char) => parseInt(char))
+    .map((char) => 1 * char)
     .reverse();
 
   for (let i = 0; i < smaller.length; i++) {
@@ -73,7 +73,6 @@ const multTwoNumbers = (str1, str2) => {
     }
     multipliedLines.push(tempNum.join(""));
   }
-  // return multipliedLines;
   return addNumbersTogether(multipliedLines);
 };
 
@@ -119,7 +118,7 @@ const sumOfMultiples = (number, stop) => {
 };
 
 const getRotPerms = (string) => {
-  // gets rotated permutations
+  // gets rotated permutations, for example: input is "abc", it will return ["abc", "bca", "cab"]
   let chars = string.split("");
   let perms = [];
   for (let i = 0; i < chars.length; i++) {
@@ -170,8 +169,57 @@ const positionInAlphabet = (char) => {
   return char.charCodeAt(0) - 96;
 };
 
-const isTriangleNumber = (num, i) => {
-  if ((num == 0 && i == 1) || num < 0) return false;
-  if (num == 0) return true;
-  return isTriangleNumber(num - i, i + 1);
+const collatzSeqLength = (number, currentLength) => {
+  // usage: collatzSeqLength(someNumber, 1);
+  if (number == 1) return currentLength;
+  if (number % 2 == 0) return collatzSeqLength(number / 2, currentLength + 1);
+  else return collatzSeqLength(number * 3 + 1, currentLength + 1);
 };
+
+const oneToNinePandigital = (string) => {
+  string = string.split("");
+  for (let i = 1; i <= 9; i++) {
+    if (!string.includes(i.toString())) return false;
+  }
+  return true;
+};
+
+const triangleNumber = (number) => {
+  return (number * (number + 1)) / 2;
+};
+
+const isTriangleNumber = (num, i) => {
+  // made from the quadratic formula
+  // return false if it's not a triangle number,
+  // if it is, returns which number it was made from
+  let part = Math.sqrt(8 * num + 1);
+  if (parseInt(part) !== part) return false;
+  let n = (part - 1) / 2;
+  if (parseInt(n) !== n) return false;
+  return n;
+};
+
+const pentagonNumber = (number) => {
+  return (number * (3 * number - 1)) / 2;
+};
+
+const isPentagonNumber = (num) => {
+  // made from the quadratic formula
+  // return false if it's not a pentagon number,
+  // if it is, returns which number it was made from
+  let part = Math.sqrt(24 * num + 1);
+  if (parseInt(part) !== part) return false;
+  let n = (1 + part) / 6;
+  if (parseInt(n) !== n) return false;
+  return n;
+};
+
+let start = Date.now();
+// --------------------------------
+
+// test the performance of algorithms here
+
+// --------------------------------
+let end = Date.now();
+
+console.log(end - start); // it will print how much it took to complete the task
