@@ -254,6 +254,14 @@ const pythagoreanTriples = (P) => {
   return triples;
 };
 
+const nCr = (n, r) => {
+  return factorial(n) / (factorial(r) * factorial(n - r));
+};
+
+const nPr = (n, r) => {
+  return factorial(n) / factorial(r);
+};
+
 let start = Date.now();
 // --------------------------------
 
