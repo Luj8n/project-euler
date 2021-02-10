@@ -139,7 +139,7 @@ const getPerms = (string) => {
     let oneChar = chars[i];
     let charsLeft = [...chars];
     charsLeft.splice(i, 1);
-    let otherPemutations = module.getPerms(charsLeft.join(""));
+    let otherPemutations = getPerms(charsLeft.join(""));
     otherPemutations.forEach((perm) => permutations.push(oneChar + perm));
   }
   return permutations;
