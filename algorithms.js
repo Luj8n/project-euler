@@ -240,6 +240,20 @@ const LCM = (a, b) => {
   return (a / GCD(a, b)) * b;
 };
 
+const pythagoreanTriples = (P) => {
+  // return all triples, such that their sum is P
+  let triples = [];
+  for (let a = 1; a < P; a++) {
+    for (let b = 1; b <= a; b++) {
+      let cSquare = a * a + b * b;
+      let c = Math.sqrt(cSquare);
+      if (parseInt(c) !== c) continue;
+      if (c == P - a - b) triples.push({ a, b, c });
+    }
+  }
+  return triples;
+};
+
 let start = Date.now();
 // --------------------------------
 
