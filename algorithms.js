@@ -262,6 +262,18 @@ const nPr = (n, r) => {
   return factorial(n) / factorial(r);
 };
 
+const iterationsToPalindrome = (num, iterations = 0) => {
+  // returns false if it is a lychrel number,
+  // else returns how many iterations it takes to become a palindrome
+  // more info problem 55 (https://projecteuler.net/problem=55)
+  if (iterations == 50) return false;
+  if (iterations != 0 && isPalindrome(num.toString())) return iterations;
+  return iterationsToPalindrome(
+    num + num.toString().split("").reverse().join("") * 1,
+    iterations + 1
+  );
+};
+
 let start = Date.now();
 // --------------------------------
 
