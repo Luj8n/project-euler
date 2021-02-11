@@ -274,6 +274,41 @@ const iterationsToPalindrome = (num, iterations = 0) => {
   );
 };
 
+const addFractions = (a, b) => {
+  // fraction is an object
+  // example of fraction: {numerator: someNumber, denominator: someNumber}
+  // den can't be negative, but num can be
+  let newDen = LCM(a.denominator, b.denominator);
+  let newNum = a.numerator * (newDen / a.denominator) + b.numerator * (newDen / b.denominator);
+  return { numerator: newNum, denominator: newDen };
+};
+
+const multiplyFractions = (a, b) => {
+  let newDen = a.denominator * b.denominator;
+  let newNum = a.numerator * b.numerator;
+  let divideBy = GCD(newDen, newNum);
+  newDen /= divideBy;
+  newNum /= divideBy;
+  return { numerator: newNum, denominator: newDen };
+};
+
+const divideFractions = (a, b) => {
+  return multiplyFractions({ ...a }, { numerator: b.denominator, denominator: b.numerator });
+};
+
+const sqrtOf2 = (iterations) => {
+  // return a fraction, that is an aproximation of sqrt of 2
+  // the more iterations, the more precise
+  function func(iLeft) {
+    if (iLeft == 1) return { numerator: 1, denominator: 2 };
+    return divideFractions(
+      { numerator: 1, denominator: 1 },
+      addFractions({ numerator: 2, denominator: 1 }, func(iLeft - 1))
+    );
+  }
+  return addFractions({ numerator: 1, denominator: 1 }, func(iterations));
+};
+
 let start = Date.now();
 // --------------------------------
 
