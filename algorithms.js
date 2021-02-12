@@ -279,7 +279,9 @@ const addFractions = (a, b) => {
   // example of fraction: {numerator: someNumber, denominator: someNumber}
   // den can't be negative, but num can be
   let newDen = LCM(a.denominator, b.denominator);
-  let newNum = a.numerator * (newDen / a.denominator) + b.numerator * (newDen / b.denominator);
+  let newNum =
+    a.numerator * (newDen / a.denominator) +
+    b.numerator * (newDen / b.denominator);
   return { numerator: newNum, denominator: newDen };
 };
 
@@ -293,7 +295,10 @@ const multiplyFractions = (a, b) => {
 };
 
 const divideFractions = (a, b) => {
-  return multiplyFractions({ ...a }, { numerator: b.denominator, denominator: b.numerator });
+  return multiplyFractions(
+    { ...a },
+    { numerator: b.denominator, denominator: b.numerator }
+  );
 };
 
 const sqrtOf2 = (iterations) => {
@@ -307,6 +312,18 @@ const sqrtOf2 = (iterations) => {
     );
   }
   return addFractions({ numerator: 1, denominator: 1 }, func(iterations));
+};
+
+const squareDigitChain = (num, iterations = 0) => {
+  // more info in problem 92 (https://projecteuler.net/problem=92)
+  // returns an object
+  if (num == 89 || num == 1) return { end: num, iterations };
+  let sum = 0;
+  num
+    .toString()
+    .split("")
+    .forEach((digit) => (sum += digit * digit));
+  return squareDigitChain(sum, iterations + 1);
 };
 
 let start = Date.now();
