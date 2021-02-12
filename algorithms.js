@@ -326,6 +326,20 @@ const squareDigitChain = (num, iterations = 0) => {
   return squareDigitChain(sum, iterations + 1);
 };
 
+const fibonacci = (n) => {
+  if (n < 2) return 1;
+  let nth = 2;
+  let cur = 1;
+  let prev = 1;
+  while (true) {
+    if (n == nth) return cur;
+    let temp = cur;
+    cur += prev;
+    prev = temp;
+    nth++;
+  }
+};
+
 let start = Date.now();
 // --------------------------------
 
